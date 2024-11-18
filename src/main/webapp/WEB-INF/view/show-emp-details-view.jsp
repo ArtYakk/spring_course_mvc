@@ -1,3 +1,4 @@
+<jsp:useBean id="employee" scope="request" type="com.artemyakkonen.spring.mvc.Employee "/>
 <%--
   Created by IntelliJ IDEA.
   User: iakon
@@ -17,6 +18,12 @@
 <br>
 <br>
 <%--Your name: ${param.employeeName}--%>
-Your name: ${nameAttribute}
+Your name: ${employee.name}
+<br>
+<br>
+Your surname: ${employee.surname}
+<br>
+<br>
+Your salary: ${employee.salary}
 </body>
 </html>
