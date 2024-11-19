@@ -1,16 +1,25 @@
 package com.artemyakkonen.spring.mvc;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class Employee {
+    @Size(min = 2, message = "name must be minimum 2 symbols")
     private String name;
+    @NotBlank(message = "Surname is required field")
     private String surname;
     private String salary;
     private String department;
     private Map<String, String> departments;
     private String carBrand;
     private Map<String, String> carBrands;
+    private String[] languages;
+    private Map<String, String> languageList;
 
     public Employee() {
         departments = new HashMap<String, String>();
@@ -23,6 +32,27 @@ public class Employee {
         carBrands.put("Audi", "Audi");
         carBrands.put("Mercedes-Benz", "MB");
 
+        languageList = new HashMap<>();
+        languageList.put("English", "EN");
+        languageList.put("French", "FR");
+        languageList.put("Deutch", "DE");
+
+    }
+
+    public Map<String, String> getLanguageList() {
+        return languageList;
+    }
+
+    public void setLanguageList(Map<String, String> languageList) {
+        this.languageList = languageList;
+    }
+
+    public String[] getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(String[] languages) {
+        this.languages = languages;
     }
 
     public Map<String, String> getCarBrands() {

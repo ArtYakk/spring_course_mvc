@@ -1,8 +1,10 @@
 package com.artemyakkonen.spring.mvc;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,15 +32,16 @@ public class MyController {
 
 
     @RequestMapping("/showDetails")
-    public String showEmpDetails(@ModelAttribute("employee") Employee emp){
+    public String showEmpDetails(@Valid @ModelAttribute("employee") Employee emp,
+                                 BindingResult bindingResult){
 
-        String name = emp.getName();
-        emp.setName("Mrr " + name);
-        String surname = emp.getSurname();
-        emp.setSurname(surname + "!");
-        int salary = Integer.parseInt(emp.getSalary());
-        emp.setSalary(String.valueOf(salary * 10));
+       // System.out.println("Surname length: " + emp.getSurname().length());
 
-        return "show-emp-details-view";
+        if(bindingResult.hasErrors()){
+            return "ask-emp-details-view";
+        } else {
+            return "show-emp-details-view";
+        }
+
     }
 }
