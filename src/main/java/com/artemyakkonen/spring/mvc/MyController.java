@@ -24,6 +24,7 @@ public class MyController {
         emp.setName("Ivan");
         emp.setSurname("Vanin");
         emp.setSalary("750");
+        emp.setPhoneNumber("777-77-77");
 
         model.addAttribute("employee", emp);
 
